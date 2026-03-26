@@ -28,8 +28,9 @@ const Dashboard = () => {
             const res = await api.get(`/files/${file.id}/download`);
             setPreviewFile({ ...file, downloadUrl: res.data.downloadUrl });
         } catch (error) {
-            console.error("Error previewing file:", error);
-            toast.error("Failed to preview file");
+            console.error("Error previewing file:", error.response || error);
+            const msg = error.response?.data?.error || "Failed to preview file";
+            toast.error(msg);
         }
     };
 

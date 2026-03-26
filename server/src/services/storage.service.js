@@ -45,7 +45,7 @@ export const uploadAvatarToStorage = async (file, userId) => {
 };
 
 export const generateSignedUrl = async (path) =>{
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabaseAdmin.storage
     .from("files")
     .createSignedUrl(path, 300); // 5 minutes expiry
 
