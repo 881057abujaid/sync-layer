@@ -29,8 +29,8 @@ const Dashboard = () => {
             setPreviewFile({ ...file, downloadUrl: res.data.downloadUrl });
         } catch (error) {
             console.error("Error previewing file:", error.response || error);
-            const msg = error.response?.data?.error || "Failed to preview file";
-            toast.error(msg);
+            const msg = error.response?.data?.error || error.message || "Failed to preview file";
+            toast.error(msg, { duration: 5000 }); // Show longer to allow reading path
         }
     };
 
@@ -86,7 +86,7 @@ const Dashboard = () => {
                                 text-[12.5px] font-semibold
                                 transition-all duration-150 group
                                 hover:from-[#2563eb] hover:to-[#06b6d4]
-                                hover:border-transparent
+                                hover:text-white hover:border-transparent
                                 hover:shadow-[0_2px_12px_rgba(37,99,235,0.3)]">
                             <FolderPlus
                                 size={13}

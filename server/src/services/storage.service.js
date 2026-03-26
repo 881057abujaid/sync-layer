@@ -46,16 +46,16 @@ export const uploadAvatarToStorage = async (file, userId) => {
 
 export const generateSignedUrl = async (path) =>{
     try {
-        // Sanitize path: remove leading slashes
+        const bucket = "files";
         const cleanPath = path.replace(/^\/+/, "");
         
         const { data, error } = await supabaseAdmin.storage
-        .from("files")
-        .createSignedUrl(cleanPath, 300); // 5 minutes expiry
+        .from(bucket)
+        .createSignedUrl(cleanPath, 300);
 
         if(error) {
-            console.error(`Supabase Signed URL Error for path [${cleanPath}]:`, error);
-            throw error;
+            console.error(`Supabase Error: ${error.message} | Bucket: ${bucket} | Path: ${cleanPath}`);
+            throw new Error(`Storage error: ${error.message} (Bucket: ${bucket}, Path: ${cleanPath})`);
         }
         return data.signedUrl;
     } catch (err) {
