@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { X, Download, FileX, FileText, ImageIcon, Video, Music, Archive } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -37,9 +38,9 @@ const FilePreviewModal = ({ file, onClose }) => {
         toast.success(`Downloading "${file?.name}"`); // ← add karo
     };
 
-    return (
+    return createPortal(
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center modal-overlay"
+            className="fixed inset-0 z-[200] flex items-center justify-center modal-overlay"
             onClick={(e) => e.target === e.currentTarget && onClose()}
         >
             <div className="w-[85%] h-[85%] max-w-5xl flex flex-col glass-modal rounded-[20px] shadow-[0_24px_64px_rgba(0,0,0,0.2)] border border-white/90 overflow-hidden">
@@ -178,7 +179,8 @@ const FilePreviewModal = ({ file, onClose }) => {
                     )}
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 };
 
