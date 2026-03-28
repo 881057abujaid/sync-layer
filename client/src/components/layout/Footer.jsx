@@ -36,7 +36,7 @@ const Footer = () => {
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse
                     bg-gradient-to-br from-[#2563eb] to-[#06b6d4]" />
                 <span className="text-[11.5px] font-medium text-slate-500">
-                    All systems operational
+                    Made with ❤️ by Abujaid Raja
                 </span>
             </div>
 
