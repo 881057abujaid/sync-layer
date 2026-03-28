@@ -120,48 +120,52 @@ const FileMenu = ({ file, onClose, refresh, position }) => {
         versions: handleVersions,
     };
 
+    const isModalOpen = showRename || showShare || showMove || showVersions;
+
     return (
         <>
-            <div
-                ref={menuRef}
-                style={menuStyle}
-                className="w-44 bg-white/90 backdrop-blur-[20px]
-                    border border-white/90 rounded-[12px]
-                    shadow-[0_8px_28px_rgba(37,99,235,0.12)]
-                    overflow-hidden py-1">
+            {!isModalOpen && (
+                <div
+                    ref={menuRef}
+                    style={menuStyle}
+                    className="w-44 bg-white/90 backdrop-blur-[20px]
+                        border border-white/90 rounded-[12px]
+                        shadow-[0_8px_28px_rgba(37,99,235,0.12)]
+                        overflow-hidden py-1">
 
-                {/* File name header */}
-                <div className="flex items-center justify-between
-                    px-3 py-2 border-b border-blue-500/6">
-                    <p className="text-[11px] font-semibold text-slate-400
-                        truncate max-w-[120px]">
-                        {file.name}
-                    </p>
-                    <button
-                        onClick={onClose}
-                        className="w-4 h-4 flex items-center justify-center
-                            text-slate-300 hover:text-slate-500
-                            transition-colors flex-shrink-0">
-                        <X size={11} />
-                    </button>
-                </div>
-
-                {/* Menu Items */}
-                {menuItems.map(({ label, icon: Icon, style, action, divider }) => (
-                    <div key={action}>
-                        {divider && <div className="h-px bg-blue-500/6 my-1" />}
+                    {/* File name header */}
+                    <div className="flex items-center justify-between
+                        px-3 py-2 border-b border-blue-500/6">
+                        <p className="text-[11px] font-semibold text-slate-400
+                            truncate max-w-[120px]">
+                            {file.name}
+                        </p>
                         <button
-                            onClick={actionMap[action]}
-                            className={`flex items-center gap-2.5 w-full
-                                text-left px-3 py-[7px] text-[12.5px] font-medium
-                                border border-transparent cursor-pointer
-                                transition-all duration-150 ${style}`}>
-                            <Icon size={13} className="flex-shrink-0" />
-                            {label}
+                            onClick={onClose}
+                            className="w-4 h-4 flex items-center justify-center
+                                text-slate-300 hover:text-slate-500
+                                transition-colors flex-shrink-0">
+                            <X size={11} />
                         </button>
                     </div>
-                ))}
-            </div>
+
+                    {/* Menu Items */}
+                    {menuItems.map(({ label, icon: Icon, style, action, divider }) => (
+                        <div key={action}>
+                            {divider && <div className="h-px bg-blue-500/6 my-1" />}
+                            <button
+                                onClick={actionMap[action]}
+                                className={`flex items-center gap-2.5 w-full
+                                    text-left px-3 py-[7px] text-[12.5px] font-medium
+                                    border border-transparent cursor-pointer
+                                    transition-all duration-150 ${style}`}>
+                                <Icon size={13} className="flex-shrink-0" />
+                                {label}
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
 
             {/* ── Modals — portal ── */}
             {showRename && createPortal(
