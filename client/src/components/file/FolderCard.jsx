@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { Folder } from "lucide-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const FolderCard = ({ folder, onOpen }) => {
+const FolderCard = memo(({ folder, onOpen }) => {
     return (
         <div
             onDoubleClick={() => onOpen(folder)}
@@ -50,6 +51,6 @@ const FolderCard = ({ folder, onOpen }) => {
             </div>
         </div>
     );
-};
+});
 
-export default FolderCard;
+export default FolderCard;

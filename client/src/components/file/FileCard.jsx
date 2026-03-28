@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, memo } from "react";
 import { createPortal } from "react-dom";
 import { MoreVertical, FileText, ImageIcon, Video, Music, Archive, File } from "lucide-react";
 import FileMenu from "./FileMenu";
@@ -30,7 +30,7 @@ const formatSize = (bytes = 0) => {
     return                           `${(bytes / 1024 ** 3).toFixed(1)} GB`;
 };
 
-const FileCard = ({ file, refresh, onPreview }) => {
+const FileCard = memo(({ file, refresh, onPreview }) => {
     const [menu, setMenu]     = useState(false);
     const [menuPos, setMenuPos] = useState({ top: 0, left: 0 });
     const btnRef              = useRef(null);
@@ -73,8 +73,7 @@ const FileCard = ({ file, refresh, onPreview }) => {
 
     return (
         <div
-            className="relative bg-white/70 backdrop-blur-[28px]
-                border border-white/90 rounded-[14px] p-3 sm:p-[14px]
+            className="relative glass-panel rounded-[14px] p-3 sm:p-[14px]
                 cursor-pointer
                 hover:shadow-[0_8px_28px_rgba(37,99,235,0.13)]
                 hover:-translate-y-1 hover:border-blue-500/15
@@ -136,6 +135,6 @@ const FileCard = ({ file, refresh, onPreview }) => {
             )}
         </div>
     );
-};
+});
 
 export default FileCard;

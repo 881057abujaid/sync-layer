@@ -29,16 +29,20 @@
 
 @layer components {
     .glass-panel {
-        @apply bg-white/70 backdrop-blur-[28px] border border-white/90 shadow-[0_2px_12px_rgba(37,99,235,0.05)];
+        @apply bg-white/70 border border-white/90 shadow-[0_2px_12px_rgba(37,99,235,0.05)];
+        @apply backdrop-blur-[12px] sm:backdrop-blur-[28px];
     }
     .glass-panel-nav {
-        @apply bg-white/62 backdrop-blur-[28px];
+        @apply bg-white/62;
+        @apply backdrop-blur-[12px] sm:backdrop-blur-[28px];
     }
     .glass-modal {
-        @apply bg-white/85 backdrop-blur-[32px];
+        @apply bg-white/85;
+        @apply backdrop-blur-[16px] sm:backdrop-blur-[32px];
     }
     .modal-overlay {
-        @apply bg-black/25 backdrop-blur-[4px];
+        @apply bg-black/25;
+        @apply backdrop-blur-[2px] sm:backdrop-blur-[4px];
     }
     .icon-box {
         @apply flex flex-shrink-0 items-center justify-center bg-gradient-to-br from-[#2563eb]/10 to-[#06b6d4]/8;
